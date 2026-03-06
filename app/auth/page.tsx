@@ -6,20 +6,20 @@ import { authClient } from "@/app/_lib/auth-client";
 import { Button } from "@/components/ui/button";
 
 export default function AuthPage() {
-  // const { data: session, isPending } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
 
-  // if (isPending) return null;
-  // if (session) redirect("/");
+  if (isPending) return null;
+  if (session) redirect("/");
 
   const handleGoogleLogin = async () => {
-    // const { error } = await authClient.signIn.social({
-    //   provider: "google",
-    //   callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
-    // });
+    const { error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+    });
 
-    // if (error) {
-    //   console.error(error.message);
-    // }
+    if (error) {
+      console.error(error.message);
+    }
   };
 
   return (
