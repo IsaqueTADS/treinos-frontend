@@ -4,6 +4,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { authClient } from "@/app/_lib/auth-client";
 import { Button } from "@/components/ui/button";
+import { LoginForm } from "./_componets/login-form";
 
 export default function AuthPage() {
   const { data: session, isPending } = authClient.useSession();
@@ -46,19 +47,7 @@ export default function AuthPage() {
             O app que vai transformar a forma como você treina.
           </h1>
 
-          <Button
-            onClick={handleGoogleLogin}
-            className="h-[38px] rounded-full bg-white px-6 text-black hover:bg-white/90"
-          >
-            <Image
-              src="/google-icon.svg"
-              alt=""
-              width={16}
-              height={16}
-              className="shrink-0"
-            />
-            Fazer login com Google
-          </Button>
+          <LoginForm />
         </div>
 
         <p className="font-heading text-xs leading-[1.4] text-primary-foreground/70">
