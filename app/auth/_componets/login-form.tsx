@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/app/_lib/auth-client";
 import { SignInWithGoogle } from "./sign-in-with-google";
-import useForm from "./use-form";
+import useForm from "@/hooks/use-form";
 import React from "react";
 import { redirect } from "next/navigation";
 
