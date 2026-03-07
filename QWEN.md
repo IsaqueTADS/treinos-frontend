@@ -1,7 +1,12 @@
 ## Qwen Added Memories
 - Use Conventional Commits format for all commit messages (e.g., feat:, fix:, chore:, docs:, style:, refactor:, test:).
+- **SEMPRE responda em Português (Brasil)**: Todas as respostas devem ser em português, independentemente do idioma da entrada do usuário.
 - **SEMPRE leia todo o contexto da aplicação e a pasta `.agent`**: Antes de realizar qualquer alteração, sempre:
   - Leia as regras em `.agent/rules/` (general.md, api.md, react.md, typescript.md)
   - Explore a estrutura de diretórios e arquivos relevantes
   - Verifique componentes, utilitários e APIs existentes
   - Garanta consistência com os padrões do projeto
+- **Acesso ao Figma via MCP**: O Figma está configurado via MCP server remoto em `.config/mcp.json`. Para acessar:
+  - Use o servidor MCP `figma-desktop` configurado no arquivo `.config/mcp.json`
+  - O servidor está rodando em `http://127.0.0.1:3845/mcp` (Figma Desktop Connector)
+  - Certifique-se de que o Figma Desktop Connector esteja em execução antes de usar os comandos do Figma
