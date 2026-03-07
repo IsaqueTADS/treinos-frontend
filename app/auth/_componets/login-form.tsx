@@ -16,6 +16,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "./password-input";
 import { authClient } from "@/app/_lib/auth-client";
 import { SignInWithGoogle } from "./sign-in-with-google";
 import useForm from "@/hooks/use-form";
@@ -104,9 +105,8 @@ export function LoginForm({
                     Esqueceu sua senha?
                   </a>
                 </div>
-                <Input
+                <PasswordInput
                   id="password"
-                  type="password"
                   value={passwordField.value}
                   onChange={passwordField.onChange}
                   onBlur={passwordField.onBlur}

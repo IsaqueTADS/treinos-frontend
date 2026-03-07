@@ -10,6 +10,9 @@
   - Use o servidor MCP `figma-desktop` configurado no arquivo `.config/mcp.json`
   - O servidor está rodando em `http://127.0.0.1:3845/mcp` (Figma Desktop Connector)
   - Certifique-se de que o Figma Desktop Connector esteja em execução antes de usar os comandos do Figma
+- **Estrutura de Componentes**: A pasta `components/ui` é reservada exclusivamente para componentes da biblioteca shadcn/ui. **NUNCA** crie componentes personalizados diretamente em `components/ui`. Para novos componentes:
+  - Componentes reutilizáveis globais: crie em `components/` (ex: `components/header.tsx`, `components/sidebar.tsx`)
+  - Componentes específicos de uma feature/página: crie em `app/[feature]/_components/` (ex: `app/auth/_components/login-form.tsx`)
 
 ---
 
