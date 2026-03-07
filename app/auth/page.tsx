@@ -12,25 +12,24 @@ export default function AuthPage() {
   if (session) redirect("/");
 
   return (
-    <div className="relative flex min-h-svh flex-col bg-black">
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <Image
-          src="/login-bg.png"
-          alt=""
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-
-      <div className="relative z-10 flex h-[296px] shrink-0 flex-col items-center justify-between overflow-hidden rounded-b-[20px] px-5 pb-10 pt-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(243deg, rgba(0,0,0,0) 34%, rgb(0,0,0) 100%)",
-          }}
-        />
+    <div className="flex min-h-svh flex-col bg-background">
+      <div className="relative flex h-[296px] shrink-0 flex-col items-center justify-between overflow-hidden rounded-b-[20px] px-5 pb-10 pt-5">
+        <div className="absolute inset-0" aria-hidden="true">
+          <Image
+            src="/login-bg.png"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(243deg, rgba(0,0,0,0) 34%, rgb(0,0,0) 100%)",
+            }}
+          />
+        </div>
 
         <p
           className="relative text-[22px] uppercase leading-[1.15] text-background"
@@ -49,11 +48,11 @@ export default function AuthPage() {
         </div>
       </div>
 
-      <div className="relative z-10 flex-1 px-5 py-5">
+      <div className="flex-1 px-5 py-5">
         <LoginForm />
       </div>
 
-      <p className="relative z-10 pb-5 text-center font-heading text-xs leading-[1.4] text-primary-foreground/70">
+      <p className="pb-5 text-center font-heading text-xs leading-[1.4] text-muted-foreground">
         ©2026 Copyright FIT.AI. Todos os direitos reservados
       </p>
     </div>
