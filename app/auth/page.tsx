@@ -12,16 +12,6 @@ export default function AuthPage() {
   if (isPending) return null;
   if (session) redirect("/");
 
-  const handleGoogleLogin = async () => {
-    const { error } = await authClient.signIn.social({
-      provider: "google",
-      callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
-    });
-
-    if (error) {
-      console.error(error.message);
-    }
-  };
 
   return (
     <div className="relative flex min-h-svh flex-col bg-black">
@@ -41,19 +31,13 @@ export default function AuthPage() {
 
       <div className="flex-1" />
 
-      <div className="relative z-10 flex flex-col items-center gap-15 rounded-t-[20px] bg-primary px-5 pb-10 pt-12">
-        <div className="flex w-full flex-col items-center gap-6">
-          <h1 className="w-full text-center font-heading text-[32px] font-semibold leading-[1.05] text-primary-foreground">
-            O app que vai transformar a forma como você treina.
-          </h1>
-
-          <LoginForm />
-        </div>
-
-        <p className="font-heading text-xs leading-[1.4] text-primary-foreground/70">
-          ©2026 Copyright FIT.AI. Todos os direitos reservados
-        </p>
+      <div className="z-20">
+        <LoginForm />
       </div>
+
+      <p className="font-heading text-xs leading-[1.4] text-primary-foreground/70">
+        ©2026 Copyright FIT.AI. Todos os direitos reservados
+      </p>
     </div>
   );
 }
