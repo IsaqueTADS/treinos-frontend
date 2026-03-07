@@ -12,8 +12,8 @@ export default function AuthPage() {
   if (session) redirect("/");
 
   return (
-    <div className="flex min-h-svh flex-col bg-auth-bg text-auth-bg-foreground">
-      <div className="relative flex h-[296px] shrink-0 flex-col items-center justify-between overflow-hidden rounded-b-[20px] px-5 pb-10 pt-5">
+    <div className="flex min-h-svh flex-col bg-auth-bg text-auth-bg-foreground py-0 my-0">
+      <div className="relative flex h-[330px] shrink-0 flex-col items-center justify-between overflow-hidden rounded-b-[20px] px-5 pb-10 pt-5">
         <div className="absolute inset-0" aria-hidden="true">
           <Image
             src="/login-bg.png"
@@ -48,10 +48,9 @@ export default function AuthPage() {
         </div>
       </div>
 
-      <div className="flex-1 px-5 py-5">
+      <div className="px-0  my-auto">
         <LoginForm />
       </div>
-
       <p className="pb-5 text-center font-heading text-xs leading-[1.4] text-auth-bg-foreground/70">
         ©2026 Copyright FIT.AI. Todos os direitos reservados
       </p>
