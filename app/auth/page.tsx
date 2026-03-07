@@ -1,15 +1,17 @@
-"use client";
-
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { authClient } from "@/app/_lib/auth-client";
 import { LoginForm } from "./_componets/login-form";
+import { headers } from "next/headers";
 
-export default function AuthPage() {
-  const { data: session, isPending } = authClient.useSession();
+export default async function AuthPage() {
+  const session = await authClient.getSession({
+    fetchOptions: {
+      headers: await headers(),
+    },
+  });
 
-  if (isPending) return null;
-  if (session) redirect("/");
+  if (session.data?.user) redirect("/");
 
   return (
     <div className="flex min-h-svh flex-col bg-auth-bg text-auth-bg-foreground py-0 my-0">
