@@ -19,20 +19,23 @@ export default async function Home() {
 
   if (!session.data?.user) redirect("/auth");
 
+  console.log(session)
+
   const today = dayjs();
   const [homeData, trainData] = await Promise.all([
     getHomeData(today.format("YYYY-MM-DD")),
     getUserTrainData(),
   ]);
 
+
   if (homeData.status !== 200) {
     throw new Error("Failed to fetch home data");
   }
 
-  // const needsOnboarding =
-  //   !homeData.data.activeWorkoutPlanId ||
-  //   (trainData.status === 200 && !trainData.data);
-  // if (needsOnboarding) redirect("/onboarding");
+  const needsOnboarding =
+    !homeData.data.activeWorkoutPlanId ||
+    (trainData.status === 200 && !trainData.data);
+  if (needsOnboarding) redirect("/onboarding");
 
   const { todayWorkoutDay, workoutStreak, consistencyByDay } = homeData.data;
   const userName = session.data.user.name?.split(" ")[0] ?? "";

@@ -34,10 +34,10 @@ export default async function StatsPage() {
     getUserTrainData(),
   ]);
 
-  // const needsOnboarding =
-  //   (homeData.status === 200 && !homeData.data.activeWorkoutPlanId) ||
-  //   (trainData.status === 200 && !trainData.data);
-  // if (needsOnboarding) redirect("/onboarding");
+  const needsOnboarding =
+    (homeData.status === 200 && !homeData.data.activeWorkoutPlanId) ||
+    (trainData.status === 200 && !trainData.data);
+  if (needsOnboarding) redirect("/onboarding");
 
   if (statsResponse.status !== 200) {
     throw new Error("Failed to fetch stats");
