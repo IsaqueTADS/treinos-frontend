@@ -22,6 +22,7 @@ import { SignInWithGoogle } from "./sign-in-with-google";
 import useForm from "@/hooks/use-form";
 import React from "react";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export function LoginForm({
   className,
@@ -130,9 +131,9 @@ export function LoginForm({
 
                 <FieldDescription className="text-center">
                   Não tem uma conta?{" "}
-                  <a href="/auth/signup" className="text-primary hover:underline">
+                  <Link href="/auth/signup" className="text-primary hover:underline">
                     Cadastre-se
-                  </a>
+                  </Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>
