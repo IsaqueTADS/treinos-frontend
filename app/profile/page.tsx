@@ -15,7 +15,7 @@ export default async function ProfilePage() {
     },
   });
 
-  if (!session.data?.user) redirect("/auth");
+  if (!session.data?.user) redirect("/auth/login");
 
   const [trainData, homeData] = await Promise.all([
     getUserTrainData(),

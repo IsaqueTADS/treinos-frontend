@@ -17,7 +17,7 @@ export default async function Home() {
     },
   });
 
-  if (!session.data?.user) redirect("/auth");
+  if (!session.data?.user) redirect("/auth/login");
 
 
   const today = dayjs();
@@ -31,10 +31,10 @@ export default async function Home() {
     throw new Error("Failed to fetch home data");
   }
 
-  // const needsOnboarding =
-  //   !homeData.data.activeWorkoutPlanId ||
-  //   (trainData.status === 200 && !trainData.data);
-  // if (needsOnboarding) redirect("/onboarding");
+  const needsOnboarding =
+    !homeData.data.activeWorkoutPlanId ||
+    (trainData.status === 200 && !trainData.data);
+  if (needsOnboarding) redirect("/onboarding");
 
   const { todayWorkoutDay, workoutStreak, consistencyByDay } = homeData.data;
   const userName = session.data.user.name?.split(" ")[0] ?? "";

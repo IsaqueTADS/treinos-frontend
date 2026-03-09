@@ -12,7 +12,7 @@ export default async function OnboardingPage() {
     },
   });
 
-  if (!session.data?.user) redirect("/auth");
+  if (!session.data?.user) redirect("/auth/login");
 
   const [homeData, trainData] = await Promise.all([
     getHomeData(dayjs().format("YYYY-MM-DD")),

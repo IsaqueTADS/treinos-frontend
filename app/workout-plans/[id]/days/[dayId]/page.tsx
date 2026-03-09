@@ -43,7 +43,7 @@ export default async function WorkoutDayPage({
     },
   });
 
-  if (!session.data?.user) redirect("/auth");
+  if (!session.data?.user) redirect("/auth/login");
 
   const { id: workoutPlanId, dayId } = await params;
   const [workoutDayData, homeData, trainData] = await Promise.all([
@@ -52,10 +52,10 @@ export default async function WorkoutDayPage({
     getUserTrainData(),
   ]);
 
-  // const needsOnboarding =
-  //   (homeData.status === 200 && !homeData.data.activeWorkoutPlanId) ||
-  //   (trainData.status === 200 && !trainData.data);
-  // if (needsOnboarding) redirect("/onboarding");
+  const needsOnboarding =
+    (homeData.status === 200 && !homeData.data.activeWorkoutPlanId) ||
+    (trainData.status === 200 && !trainData.data);
+  if (needsOnboarding) redirect("/onboarding");
 
   if (workoutDayData.status !== 200) redirect("/");
 

@@ -22,7 +22,7 @@ export default async function StatsPage() {
     },
   });
 
-  if (!session.data?.user) redirect("/auth");
+  if (!session.data?.user) redirect("/auth/login");
 
   const today = dayjs();
   const from = today.subtract(2, "month").startOf("month").format("YYYY-MM-DD");
