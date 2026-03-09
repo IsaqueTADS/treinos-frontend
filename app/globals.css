@@ -45,6 +45,8 @@
   --color-card: var(--card);
   --color-auth-bg: var(--auth-bg);
   --color-auth-bg-foreground: var(--auth-bg-foreground);
+  --color-lime-accent: var(--lime-accent);
+  --color-auth-surface: var(--auth-surface);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -92,6 +94,8 @@
   --sidebar-ring: oklch(0.841 0.238 128.85);
   --auth-bg: oklch(0.648 0.2 131.684);
   --auth-bg-foreground: oklch(0.986 0.031 120.757);
+  --lime-accent: oklch(0.894 0.199 131.56);
+  --auth-surface: oklch(0.05 0 0);
 }
 
 .dark {
@@ -131,6 +135,8 @@
   --sidebar-ring: oklch(0.405 0.101 131.063);
   --auth-bg: oklch(0.274 0.006 286.033);
   --auth-bg-foreground: oklch(0.985 0 0);
+  --lime-accent: oklch(0.894 0.199 131.56);
+  --auth-surface: oklch(0.05 0 0);
 }
 
 @layer base {
