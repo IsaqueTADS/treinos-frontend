@@ -23,43 +23,48 @@ import useForm from "@/hooks/use-form";
 import React from "react";
 import { redirect } from "next/navigation";
 
-export function LoginForm({
+export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const emailField = useForm("email");
-  const passwordField = useForm("senhaLogin");
-  const [loginError, setLoginError] = React.useState<string | null>(null);
+  const nameField = useForm("nome");
+  const passwordField = useForm("senhaCadastro");
+  const [signupError, setSignupError] = React.useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const isFormValid =
     emailField.value &&
     !emailField.error &&
+    nameField.value &&
+    !nameField.error &&
     passwordField.value &&
     !passwordField.error;
 
-  async function handleLogin(event: React.FormEvent) {
+  async function handleSignup(event: React.FormEvent) {
     event.preventDefault();
 
     const isEmailValid = emailField.validate();
+    const isNameValid = nameField.validate();
     const isPasswordValid = passwordField.validate();
 
-    if (!isEmailValid || !isPasswordValid) {
+    if (!isEmailValid || !isNameValid || !isPasswordValid) {
       return;
     }
 
     setIsSubmitting(true);
-    setLoginError(null);
+    setSignupError(null);
 
-    const { error } = await authClient.signIn.email({
+    const { error } = await authClient.signUp.email({
       email: emailField.value,
+      name: nameField.value,
       password: passwordField.value,
     });
 
     setIsSubmitting(false);
 
     if (error) {
-      setLoginError(error.message || "Error desconhecido");
+      setSignupError(error.message || "Erro ao criar conta");
       return;
     }
 
@@ -70,14 +75,32 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="bg-card text-card-foreground">
         <CardHeader>
-          <CardTitle>Acesse sua conta</CardTitle>
+          <CardTitle>Crie sua conta</CardTitle>
           <CardDescription>
-            Digite seu e-mail abaixo para acessar sua conta
+            Preencha os dados abaixo para criar sua conta
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSignup}>
             <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="name">Nome</FieldLabel>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Seu nome completo"
+                  value={nameField.value}
+                  onChange={nameField.onChange}
+                  onBlur={nameField.onBlur}
+                  aria-invalid={!!nameField.error}
+                />
+                {nameField.error && (
+                  <p className="mt-1 text-sm text-destructive">
+                    {nameField.error}
+                  </p>
+                )}
+              </Field>
+
               <Field>
                 <FieldLabel htmlFor="email">E-mail</FieldLabel>
                 <Input
@@ -95,16 +118,9 @@ export function LoginForm({
                   </p>
                 )}
               </Field>
+
               <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Senha</FieldLabel>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Esqueceu sua senha?
-                  </a>
-                </div>
+                <FieldLabel htmlFor="password">Senha</FieldLabel>
                 <PasswordInput
                   id="password"
                   value={passwordField.value}
@@ -118,20 +134,29 @@ export function LoginForm({
                   </p>
                 )}
               </Field>
+
               <Field>
-                {loginError && (
-                  <p className="mb-2 text-sm text-destructive">{loginError}</p>
+                {signupError && (
+                  <p className="mb-2 text-sm text-destructive">{signupError}</p>
                 )}
                 <Button type="submit" disabled={!isFormValid || isSubmitting}>
-                  {isSubmitting ? "Entrando..." : "Entrar"}
+                  {isSubmitting ? "Criando conta..." : "Criar conta"}
                 </Button>
+
+                <div className="my-4 flex items-center gap-3">
+                  <div className="h-px flex-1 bg-border" />
+                  <span className="text-xs text-muted-foreground">
+                    ou continue com
+                  </span>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
 
                 <SignInWithGoogle />
 
                 <FieldDescription className="text-center">
-                  Não tem uma conta?{" "}
-                  <a href="/auth/signup" className="text-primary hover:underline">
-                    Cadastre-se
+                  Já tem uma conta?{" "}
+                  <a href="/auth/login" className="text-primary hover:underline">
+                    Fazer login
                   </a>
                 </FieldDescription>
               </Field>
