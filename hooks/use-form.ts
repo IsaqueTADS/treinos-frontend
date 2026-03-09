@@ -12,6 +12,8 @@ type TipoValidacao =
   | "email"
   | "senha"
   | "senhaLogin"
+  | "senhaCadastro"
+  | "nome"
   | "telefone"
   | "instagram"
   | "obrigatorio"
@@ -42,6 +44,13 @@ const schemasFixos: Record<string, z.ZodString> = {
     ),
 
   senhaLogin: z.string().min(1, "Preencha um valor"),
+
+  senhaCadastro: z
+    .string()
+    .min(6, "A senha deve ter pelo menos 6 caracteres")
+    .max(16, "A senha deve ter no máximo 16 caracteres"),
+
+  nome: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
 
   telefone: z
     .string()
